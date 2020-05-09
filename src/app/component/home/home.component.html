@@ -1,0 +1,75 @@
+<mat-toolbar color="primary">
+  <span>東海 Picks</span>
+  <span style="flex:auto;"></span>
+  <span style="flex:auto;"></span>
+  <button mat-icon-button>
+    <mat-icon>how_to_vote</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon (click)="login()">account_circle</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon (click)="logout()">exit_to_app</mat-icon>
+      <span>ログアウト</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-tab-group>
+  <mat-tab label="人気の動画">
+    <mat-card class="example-card" *ngFor="let item of data">
+      <img mat-card-image src="{{item.thumbnail}}" alt="Photo of a Shiba Inu">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{item.title}}</mat-card-title>
+        <mat-card-subtitle>{{item.channelId}} : {{item.publishedAt}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">VOTE</button>
+      </mat-card-actions>
+      <mat-divider></mat-divider>
+    </mat-card>
+  </mat-tab>
+
+
+
+  <mat-tab label="東海オンエア">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="東海オンエアの控え室"> Content 3 </mat-tab>
+</mat-tab-group>
+
+<p>message: {{message}}</p>
+<button mat-raised-button color="primary" (click)="logout()">logout</button>
+<button mat-raised-button color="primary" (click)="getVideoInfo()">getVideoInfo</button>
+<p>User: {{currentUser}}</p>
